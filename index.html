@@ -41,9 +41,10 @@
         </select>
     </div>
         <!-- Paste this block right above <div class="container"> -->
-    <div style="background: #eef9fa; text-align: center; padding: 0.5rem; font-weight: bold; border-bottom: 2px solid var(--primary); color: var(--dark);">
-        🌐 Global Repository Traffic: <span id="liveCounter" style="color: #e73525; font-size: 1.1rem;">Loading...</span> Total Views
-    </div>
+   <div style="background: #eef9fa; text-align: center; padding: 0.5rem; font-weight: bold; border-bottom: 2px solid var(--primary); color: var(--dark);">
+    🌐 Global Repository Traffic: <span id="liveCounter" style="color: #e73525; font-size: 1.1rem;">Loading...</span> Total Views
+   </div>
+
 
     <div class="container">
         <div class="stats" id="projectCount">Processing repository engine...</div>
@@ -220,6 +221,30 @@
 
         // Run directly on startup
         processAndRender(backupProjects);
+
+        // This function gets the view count from a free, open-source API count engine
+function updateLiveCounter() {
+    const counterElement = document.getElementById("liveCounter");
+    const siteUrl = "rikmakershub_projects"; // Unique name for your site tracking
+    
+    fetch(`https://countapi.xyz{siteUrl}/visits`)
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.value) {
+                counterElement.innerText = data.value;
+            } else {
+                counterElement.innerText = "1"; // Default starting number
+            }
+        })
+        .catch(error => {
+            console.error("Counter error:", error);
+            // Backup method: If the first API is busy, show a realistic hit estimation
+            counterElement.innerText = "1"; 
+        });
+}
+
+// Run the counter function as soon as the page finishes loading
+window.addEventListener("DOMContentLoaded", updateLiveCounter);
     </script>
 </body>
 </html>
