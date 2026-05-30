@@ -3,7 +3,7 @@
 Welcome! This repository hosts a single, highly optimized web application that packs over 80 individual web development projects, UI components, and features into one fluid experience.
 
 ## 🔗 Live Demo
-👉 **[Launch the 80+ Project Portfolio Live](https://github.io)**
+👉 **[Launch the 80+ Project Portfolio Live](https://rikmakershub.github.io/RikMakersHub/)**
 
 ## 🛠️ Built With
 * **Structure:** Semantic HTML5
